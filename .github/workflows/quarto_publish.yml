@@ -47,4 +47,6 @@ jobs:
           QUARTO_PRINT_STACK: true
         with:
           run: |
+            git config user.name "${{ github.actor }}"
+            git config user.email "${{ github.actor_id }}+${{ github.actor }}@users.noreply.github.com"
             quarto publish gh-pages . --no-browser
