@@ -31,7 +31,7 @@ jobs:
           python-version: '3.11'
       - run: |
           pip install -U pip
-          pip install jupyter
+          pip install jupyter jupyter-cache
           pip install napari[all]
 
       - name: qt libs
