@@ -12,6 +12,9 @@ format:
         controls-layout: bottom-right
         controls: true
 from: markdown+emoji
+jupyter: python3
+execute: 
+  cache: true
 ---
 
 ## Introduction to napari
@@ -38,3 +41,37 @@ Research IT
 COI Disclaimer: Peter is also a napari core developer
 
 ## Content
+
+## Hello from napari
+```{python}
+#| code-fold: true
+#| code-summary: "expand for full code"
+#| echo: true
+from skimage import data
+from scipy import ndimage as ndi
+
+import napari
+
+blobs = data.binary_blobs(length=128, volume_fraction=0.1, n_dim=3)
+labeled = ndi.label(blobs)[0]
+viewer, image_layer = napari.imshow(blobs, name='blobs')
+viewer.add_labels(labeled, name='blob ID')
+viewer.dims.ndisplay = 3
+viewer.camera.zoom = 3
+viewer.camera.angles = (3, 38, 53)
+
+if __name__ == '__main__':
+    napari.run()
+```
+```{python}
+#| echo: false
+from napari.utils import nbscreenshot
+nbscreenshot(viewer, alt_text="A rotated 3D view of labled blobs")
+```
+```{python}
+#| echo: false
+#| outout: false
+viewer.close()
+```
+
+##
