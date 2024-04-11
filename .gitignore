@@ -7,7 +7,7 @@ scratch.md
 index.html
 
 # jupyter cache
-.jupyter_cache/
+.jupyter_cache/*
 
 ### macOS .gitignore
 # General

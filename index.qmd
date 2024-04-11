@@ -17,7 +17,7 @@ execute:
   cache: true
 ---
 
-## Introduction to napari
+## Introduction to `napari`
 
 **Peter Sobolewski (he/him)**
 
@@ -40,9 +40,92 @@ Research IT
 
 COI Disclaimer: Peter is also a napari core developer
 
-## Content
+## What is napari?
 
-## Hello from napari
+```{python}
+#| code-fold: true
+#| code-summary: "a Python library for n-dimensional image visualisation, annotation, and analysis."
+#| echo: true
+import napari
+import numpy as np
+from skimage import data, filters, measure, morphology
+from skimage.measure import regionprops
+
+cells3d = data.cells3d()
+
+nuclei = cells3d[:, 1, :, :]
+median = filters.median(nuclei)
+
+threshold = median > filters.threshold_li(median)
+
+remove_holes = morphology.remove_small_holes(threshold, 20**3)
+remove_objects = morphology.remove_small_objects(remove_holes, 20**3)
+
+labels = measure.label(remove_objects)
+
+properties = regionprops(labels, nuclei)
+centroids = [prop.centroid for prop in properties]
+
+viewer = napari.Viewer()
+viewer.window.resize(800, 600)
+viewer.add_image(nuclei, colormap="green")
+viewer.add_labels(labels)
+viewer.add_points(centroids, blending="translucent_no_depth", name="centroids")
+
+viewer.dims.ndisplay = 3
+viewer.camera.angles = (-30, 25, 120)
+
+if __name__ == '__main__':
+    napari.run()
+```
+```{python}
+#| echo: false
+from napari.utils import nbscreenshot
+nbscreenshot(viewer, alt_text="A rotated 3D view of labled blobs")
+```
+```{python}
+#| echo: false
+#| outout: false
+viewer.close()
+```
+
+## What can napari be used for?
+
+- view & explore 2D, 3D, and higher-dimensional arrays
+- overlay derived data such as points, polygons, labels, and more
+- seamlessly weave exploration, computation, and annotation together in imaging data analysis
+- leverage scientific Python ecosystem
+
+## napari is an open-source, community developed project—anyone can contribute! {.center}
+
+## napari strengths
+
+- graphical UI to view & explore 2D, 3D, and higher-dimensional arrays
+    - easy to integrate into existing Python workflows
+- intuitive stacking/overlay layer model for channels, modalities, annotations, etc.
+- robust GUI data annotation tools
+    - annotation data immediately available as Python objects
+- highly extensible GUI
+- robust plugin ecosystem
+
+## napari limitations
+
+- **it's just a viewer & annotation tool**
+    - **no built-in analysis tools**
+- not yet feature complete
+    - no parity between different layers/features (e.g. multiscale handling)
+    - there can be bugs :beetle:
+- can run into GPU/memory limitations for some large-data workflows
+- Python packaging and dependencies
+
+## 
+
+> # Headless napari is just Python!
+
+### -- Juan Nunez-Iglesias (**@jni**)
+
+
+## Run napari from scripts or notebooks
 ```{python}
 #| code-fold: true
 #| code-summary: "expand for full code"
@@ -74,4 +157,94 @@ nbscreenshot(viewer, alt_text="A rotated 3D view of labled blobs")
 viewer.close()
 ```
 
-##
+## Python scripts can handle keyboard and mouse events!
+
+- Customize napari functionality:
+    * keyboard and mouse events: [https://napari.org/stable/howtos/connecting_events.html](https://napari.org/stable/howtos/connecting_events.html)
+
+```python
+@viewer.bind_key('a')
+def accept_image(viewer):
+    msg = 'this is a good image'
+    viewer.status = msg
+    print(msg)
+```
+
+- Example: [https://napari.org/stable/gallery/custom_mouse_functions.html](https://napari.org/stable/gallery/custom_mouse_functions.html#sphx-glr-gallery-custom-mouse-functions-py)
+
+::: {.notes}
+events how-to
+:::
+
+## Python scripts can contribute widgets!
+
+![](images/magic_parameter_screenshot.png){height="450" fig-alt="Screenshot of napari UI with a docked widget on the right for applying scikit-image filters" fig-align="center"}
+
+::: aside
+Example: [https://napari.org/stable/gallery/magic_parameter_sweep.html](https://napari.org/stable/gallery/magic_parameter_sweep.html)
+:::
+
+## Python scripts can contribute widgets!
+
+- [`magicgui`](https://pyapp-kit.github.io/magicgui/) makes this quite easy, see [https://napari.org/stable/guides/magicgui.html](https://napari.org/stable/guides/magicgui.html)
+- ...but you can also use `Qt` for maximal control by subclassing `QWidget`
+
+## Develop a napari plugin
+
+napari plugins are Python packages that can:
+
+- add file-type readers & writers
+- customize functionality (events)
+- extend the GUI (widgets, menus)
+- provide demo/sample data
+
+Plugin developer guide: [https://napari.org/dev/plugins/index.html](https://napari.org/dev/plugins/index.html)
+
+::: {.notes}
+over 350, you can also choose to contribute to existing plugins
+:::
+
+## Plugins can be installed from within napari
+
+- plugins can be publically discoverable and have global reach via PyPI and [napari-hub.org](https://napari-hub.org)
+
+![](images/napari_plugin_UI.png){height="400" fig-alt="Screenshot of napari UI showing the plugin install/uninstall UI" fig-align="center"}
+
+## What is the napari community?
+
+- napari users: local and global
+- napari plugin developers
+- napari core developers
+- broader scientific Python community
+
+## Ask and answer questions!
+
+- image.sc forum: [https://forum.image.sc/tag/napari](https://forum.image.sc/tag/napari)
+
+- napari Zulip chat: [https://napari.zulipchat.com](https://napari.zulipchat.com/)
+
+- napari community meetings: [https://napari.org/stable/community/meeting_schedule.html](https://napari.org/stable/community/meeting_schedule.html)
+
+::: aside
+No accounts are needed to lurk...
+:::
+
+::: {.notes}
+domain specific knowledge is valuable too!
+feedback, Q&A, share use cases
+:::
+
+## Report bugs—or test existing ones
+
+- GitHub Issues: [https://github.com/napari/napari/issues](https://github.com/napari/napari/issues)
+
+- Reporting bugs/problems/inconstencies/confusion is **extremely valuable!**
+- When in doubt, report—we prefer duplicates than crickets!
+
+::: aside
+This does require an account (free), **but you can use that account to login at image.sc and zulipchat.com!**
+:::
+
+::: {.notes}
+reporting problems is very valuable!
+:::
