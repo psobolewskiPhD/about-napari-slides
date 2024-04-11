@@ -42,6 +42,7 @@ jobs:
 
       - name: Publish Quarto using headless-display for napari
         uses: aganders3/headless-gui@v2
+        # adapted from quarto-dev/quarto-actions/publish@v2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           QUARTO_PRINT_STACK: true
