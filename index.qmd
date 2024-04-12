@@ -17,7 +17,10 @@ execute:
   cache: true
 ---
 
-## Introduction to `napari`
+
+## 
+
+### Introduction to `napari`
 
 **Peter Sobolewski (he/him)**
 
@@ -38,14 +41,16 @@ Research IT
 :::
 ::::
 
-COI Disclaimer: Peter is also a napari core developer
+::: {.callout-important}
+#### COI Disclaimer: Peter is a napari core developer
+:::
 
 ## What is napari?
 
+#### A Python library for n-dimensional image visualization, annotation, and analysis.
+
 ```{python}
-#| code-fold: true
-#| code-summary: "a Python library for n-dimensional image visualisation, annotation, and analysis."
-#| echo: true
+#| echo: false
 import napari
 import numpy as np
 from skimage import data, filters, measure, morphology
@@ -67,7 +72,7 @@ properties = regionprops(labels, nuclei)
 centroids = [prop.centroid for prop in properties]
 
 viewer = napari.Viewer()
-viewer.window.resize(800, 600)
+
 viewer.add_image(nuclei, colormap="green")
 viewer.add_labels(labels)
 viewer.add_points(centroids, blending="translucent_no_depth", name="centroids")
@@ -85,7 +90,7 @@ nbscreenshot(viewer, alt_text="A rotated 3D view of labled blobs")
 ```
 ```{python}
 #| echo: false
-#| outout: false
+#| output: false
 viewer.close()
 ```
 
@@ -96,7 +101,16 @@ viewer.close()
 - seamlessly weave exploration, computation, and annotation together in imaging data analysis
 - leverage scientific Python ecosystem
 
-## napari is an open-source, community developed project—anyone can contribute! {.center}
+## A bit of background
+
+- started in 2018 by Loïc Royer (Chan Zuckerberg Biohub) and Juan Nunez-Iglesias (Monash University)
+- goal: fast n-dimensional image viewer for Python
+- named after [a settlement in Kiribati in the South Pacific, the approx. midpoint between San Francisco and Melbourne](https://en.wikipedia.org/wiki/Napari)
+- since then, the project has grown considerably, with >150 contributors and >400 plugins
+
+::: aside    
+For more backstory, [check out Juan's blog post](https://ilovesymposia.com/2019/10/24/introducing-napari-a-fast-n-dimensional-image-viewer-in-python/)—JAX is part of it!
+:::
 
 ## napari strengths
 
@@ -106,7 +120,7 @@ viewer.close()
 - robust GUI data annotation tools
     - annotation data immediately available as Python objects
 - highly extensible GUI
-- robust plugin ecosystem
+- robust plugin ecosystem: [https://napari-hub.org](https://napari-hub.org)
 
 ## napari limitations
 
@@ -118,12 +132,76 @@ viewer.close()
 - can run into GPU/memory limitations for some large-data workflows
 - Python packaging and dependencies
 
-## 
+## napari is an open-source, community developed project—anyone can contribute! 
+<br />
+
+### Even me—or *you*!
+
+- Visit the GitHub repository: https://github.com/napari/napari
+
+## napari viewer
+
+- native application you can launch from the terminal/command prompt or via the application programming interface (API)
+- this `viewer` consists of menus, a `canvas` used for display, and widgets with controls for interacting with what is displayed on the `canvas`
+
+## napari viewer
+
+```{python}
+#| echo: false
+import napari
+from napari.utils import nbscreenshot
+
+viewer = napari.Viewer()
+
+nbscreenshot(viewer, alt_text="Empty napari viewer")
+```
+
+## napari layers
+
+- the napari visualization data model uses `layers`
+- each `layer` (an image or annotation) is composited as a overlay on the previous one, with different opacity and blending options
+- the `LayerList` widget allows you to toggle visibility and stacking order
+
+## napari layers
+
+```{python}
+#| echo: false
+import skimage.data
+from napari.utils import nbscreenshot
+
+viewer.add_image(data.kidney(), channel_axis = -1, name=['nuclei', 'WGA', 'actin'], colormap=['blue', 'green', 'red'])
+
+nbscreenshot(viewer, alt_text="napari viewer with three layers: actin (red), WGA (green), nuclei (blue) displayed as a composite on the canvas in 2D.")
+```
+
+## Dimensions in napari
+
+- by default, 2 dimensions are displayed: the last two (right-most) axes of an array
+- non-displayed dimensions will be represented using a slider
+- 3D display can be toggled using viewer button or API
+- axes can be rotated or transposed using viewer buttons or API
+
+## Dimensions in napari
+
+```{python}
+#| echo: false
+
+viewer.dims.ndisplay = 3
+
+nbscreenshot(viewer, alt_text="napari viewer with three layers: actin (red), WGA (green), nuclei (blue) displayed as a composite on the canvas in 3D.")
+```
+
+```{python}
+#| echo: false
+#| output: false
+viewer.close()
+```
+
+##
 
 > # Headless napari is just Python!
 
 ### -- Juan Nunez-Iglesias (**@jni**)
-
 
 ## Run napari from scripts or notebooks
 ```{python}
@@ -149,13 +227,26 @@ if __name__ == '__main__':
 ```{python}
 #| echo: false
 from napari.utils import nbscreenshot
-nbscreenshot(viewer, alt_text="A rotated 3D view of labled blobs")
+nbscreenshot(viewer, alt_text="A rotated 3D view of labeled blobs")
 ```
 ```{python}
 #| echo: false
-#| outout: false
+#| output: false
 viewer.close()
 ```
+
+## napari API
+
+- the API and the GUI are bidirectional: 
+    - GUI changes are reflected in object property changes
+    - API changes are reflected in the GUI
+
+:::{.callout-tip}
+### This is even true for annotations, like Point positions or Shape vectors
+:::
+
+- if you're not using an interactive environment, you can access it using the built-in `console`
+- napari was designed to be extensible
 
 ## Python scripts can handle keyboard and mouse events!
 
@@ -189,7 +280,7 @@ Example: [https://napari.org/stable/gallery/magic_parameter_sweep.html](https://
 - [`magicgui`](https://pyapp-kit.github.io/magicgui/) makes this quite easy, see [https://napari.org/stable/guides/magicgui.html](https://napari.org/stable/guides/magicgui.html)
 - ...but you can also use `Qt` for maximal control by subclassing `QWidget`
 
-## Develop a napari plugin
+## Beyond that, can develop a napari plugin
 
 napari plugins are Python packages that can:
 
@@ -210,12 +301,6 @@ over 350, you can also choose to contribute to existing plugins
 
 ![](images/napari_plugin_UI.png){height="400" fig-alt="Screenshot of napari UI showing the plugin install/uninstall UI" fig-align="center"}
 
-## What is the napari community?
-
-- napari users: local and global
-- napari plugin developers
-- napari core developers
-- broader scientific Python community
 
 ## Ask and answer questions!
 
@@ -248,3 +333,5 @@ This does require an account (free), **but you can use that account to login at 
 ::: {.notes}
 reporting problems is very valuable!
 :::
+
+---

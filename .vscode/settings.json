@@ -14,9 +14,14 @@
         "autoset",
         "Bankhead",
         "Cellpose",
+        "colormap",
+        "nbscreenshot",
+        "ndisplay",
         "Polyline",
         "Prefilter",
+        "regionprops",
         "Reweight",
+        "skimage",
         "Stardist",
         "Stroma"
       ]
