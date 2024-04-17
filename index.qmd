@@ -141,6 +141,8 @@ For more backstory, [check out Juan's blog post](https://ilovesymposia.com/2019/
 
 ## Where to get help
 
+- napari documentation: [https://napari.org](https://napari.org)
+
 - image.sc forum: [https://forum.image.sc/tag/napari](https://forum.image.sc/tag/napari)
 
 - napari Zulip chat: [https://napari.zulipchat.com](https://napari.zulipchat.com/)
@@ -205,6 +207,7 @@ nbscreenshot(viewer, alt_text="Empty napari viewer")
 - the napari visualization data model uses `layers`
 - each `layer` (an image or annotation) is composited as a overlay on the previous one, with different opacity and blending options
 - the `LayerList` widget allows you to toggle visibility and stacking order
+ - the `LayerControls` widget allows you to change visualization settings of a selected layer
 
 ## napari layers
 
@@ -253,7 +256,7 @@ viewer.close()
 
 ![](images/console_example.png){fig-alt="Screenshot of napari UI with the Python console open (docked at bottom) and showing some code." fig-align="center"}
 
-:::{.callout-note}
+:::{.callout-important}
 #### Only available when launched from a non-interactive environment
 :::
 
