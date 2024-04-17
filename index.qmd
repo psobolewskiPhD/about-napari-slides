@@ -125,7 +125,7 @@ For more backstory, [check out Juan's blog post](https://ilovesymposia.com/2019/
 ## napari limitations
 
 - **it's just a viewer & annotation tool**
-    - **no built-in analysis tools**
+    - **no built-in analysis tools** (but you have Python!)
 - not yet feature complete
     - no parity between different layers/features (e.g. multiscale handling)
     - there can be bugs :beetle:
@@ -137,11 +137,45 @@ For more backstory, [check out Juan's blog post](https://ilovesymposia.com/2019/
 
 ### Even me—or *you*!
 
-- Visit the GitHub repository: https://github.com/napari/napari
+- Visit the GitHub repository: [https://github.com/napari/napari](https://github.com/napari/napari)
+
+## Where to get help
+
+- image.sc forum: [https://forum.image.sc/tag/napari](https://forum.image.sc/tag/napari)
+
+- napari Zulip chat: [https://napari.zulipchat.com](https://napari.zulipchat.com/)
+
+- napari community meetings: [https://napari.org/stable/community/meeting_schedule.html](https://napari.org/stable/community/meeting_schedule.html)
+
+::: aside
+No accounts are needed to lurk...
+:::
+
+::: {.notes}
+domain specific knowledge is valuable too!
+feedback, Q&A, share use cases
+:::
+
+## Report bugs
+
+- GitHub Issues: [https://github.com/napari/napari/issues](https://github.com/napari/napari/issues)
+
+- Reporting bugs/problems/inconsistencies/confusion is **extremely valuable!**
+- When in doubt, report—we prefer duplicates than crickets!
+
+::: aside
+This does require an account (free), **but you can use that account to login at image.sc and zulipchat.com!**
+:::
+
+::: {.notes}
+reporting problems is very valuable!
+:::
+
+# Exploring the napari viewer GUI
 
 ## napari viewer
 
-- native application you can launch from the terminal/command prompt or via the application programming interface (API)
+- native application you can launch from the terminal/command prompt using `napari` command or via the application programming interface (API), e.g. `viewer = napari.Viewer()`
 - this `viewer` consists of menus, a `canvas` used for display, and widgets with controls for interacting with what is displayed on the `canvas`
 
 ## napari viewer
@@ -155,6 +189,16 @@ viewer = napari.Viewer()
 
 nbscreenshot(viewer, alt_text="Empty napari viewer")
 ```
+
+## napari viewer: Preferences
+
+![](images/preferences.png){fig-alt="Screenshot of napari UI with the Preferences window open." fig-align="center"}
+
+:::{.callout-note}
+#### Access via `File` menu (`napari` on macOS)
+- Extensive, editable keyboard shortcuts!
+- Stored per Python env, reset using `napari --reset`
+:::
 
 ## napari layers
 
@@ -197,11 +241,21 @@ nbscreenshot(viewer, alt_text="napari viewer with three layers: actin (red), WGA
 viewer.close()
 ```
 
+# The napari API
+
 ##
 
 > # Headless napari is just Python!
 
 ### -- Juan Nunez-Iglesias (**@jni**)
+
+## Interact with napari using the built-in Python console
+
+![](images/console_example.png){fig-alt="Screenshot of napari UI with the Python console open (docked at bottom) and showing some code." fig-align="center"}
+
+:::{.callout-note}
+#### Only available when launched from a non-interactive environment
+:::
 
 ## Run napari from scripts or notebooks
 ```{python}
@@ -302,36 +356,6 @@ over 350, you can also choose to contribute to existing plugins
 ![](images/napari_plugin_UI.png){height="400" fig-alt="Screenshot of napari UI showing the plugin install/uninstall UI" fig-align="center"}
 
 
-## Ask and answer questions!
 
-- image.sc forum: [https://forum.image.sc/tag/napari](https://forum.image.sc/tag/napari)
-
-- napari Zulip chat: [https://napari.zulipchat.com](https://napari.zulipchat.com/)
-
-- napari community meetings: [https://napari.org/stable/community/meeting_schedule.html](https://napari.org/stable/community/meeting_schedule.html)
-
-::: aside
-No accounts are needed to lurk...
-:::
-
-::: {.notes}
-domain specific knowledge is valuable too!
-feedback, Q&A, share use cases
-:::
-
-## Report bugs—or test existing ones
-
-- GitHub Issues: [https://github.com/napari/napari/issues](https://github.com/napari/napari/issues)
-
-- Reporting bugs/problems/inconstencies/confusion is **extremely valuable!**
-- When in doubt, report—we prefer duplicates than crickets!
-
-::: aside
-This does require an account (free), **but you can use that account to login at image.sc and zulipchat.com!**
-:::
-
-::: {.notes}
-reporting problems is very valuable!
-:::
 
 ---
