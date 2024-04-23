@@ -45,6 +45,17 @@ Research IT
 #### COI Disclaimer: Peter is a napari core developer
 :::
 
+## Plan
+
+- Introduction to napari (these slides)
+- napari application: the GUI
+    - napari console: integrated Python REPL
+- exploratory image analysis with napari and Jupyter lab
+    - Image layers: visualization
+    - Points, Shapes, Labels layers: annotation
+    - Example workflow
+- extending napari
+
 ## What is napari?
 
 #### A Python library for n-dimensional image visualization, annotation, and analysis.
