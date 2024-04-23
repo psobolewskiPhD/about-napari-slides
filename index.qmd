@@ -114,7 +114,7 @@ For more backstory, [check out Juan's blog post](https://ilovesymposia.com/2019/
 
 ## napari strengths
 
-- graphical UI to view & explore 2D, 3D, and higher-dimensional arrays
+- graphical UI to view & explore 2D, 3D, and higher-dimensional array-like data
     - easy to integrate into existing Python workflows
 - intuitive stacking/overlay layer model for channels, modalities, annotations, etc.
 - robust GUI data annotation tools
