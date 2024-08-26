@@ -28,7 +28,7 @@ Systems Analyst, Imaging Applications
 
 Research IT
 
-:::: {.columns style='display: flex'}
+::: columns
 ::: {.column width="50%" style='display: flex; justify-content: left; align-items: center;'}
 
 ### [https://napari.org](https://napari.org) 
@@ -39,7 +39,7 @@ Research IT
 ![](images/napari.png){fig-alt="QuPath logo" width=250} 
 
 :::
-::::
+:::
 
 ::: {.callout-important}
 #### COI Disclaimer: Peter is a napari core developer
