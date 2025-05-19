@@ -119,13 +119,6 @@ viewer.close()
 - can run into GPU/memory limitations for some large-data workflows
 - Python packaging and dependencies :grimacing:
 
-## napari is an open-source, community developed project—anyone can contribute! 
-<br />
-
-### Even me—or *you*!
-
-- Visit the GitHub repository: [https://github.com/napari/napari](https://github.com/napari/napari)
-
 ## Where to get help
 
 - napari documentation: [https://napari.org](https://napari.org)
