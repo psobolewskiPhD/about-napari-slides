@@ -18,14 +18,12 @@ execute:
 ---
 
 
-## 
-
-### Introduction to `napari`
+## `napari`: what is it, what's new, and more!
 
 **Peter Sobolewski (he/him)**
 
-Systems Analyst, Imaging Applications
-
+Systems Analyst
+Imaging Applications & Machine Learning
 Research IT
 
 :::: {.columns style='display: flex'}
@@ -44,17 +42,6 @@ Research IT
 ::: {.callout-important}
 #### COI Disclaimer: Peter is a napari core developer
 :::
-
-## Plan
-
-- Introduction to napari (these slides)
-- napari application: the GUI
-    - napari console: integrated Python REPL
-- exploratory image analysis with napari and Jupyter lab
-    - Image layers: visualization
-    - Points, Shapes, Labels layers: annotation
-    - Example workflow
-- extending napari
 
 ## What is napari?
 
@@ -112,17 +99,6 @@ viewer.close()
 - seamlessly weave exploration, computation, and annotation together in imaging data analysis
 - leverage scientific Python ecosystem
 
-## A bit of background
-
-- started in 2018 by Loïc Royer (Chan Zuckerberg Biohub) and Juan Nunez-Iglesias (Monash University)
-- goal: fast n-dimensional image viewer for Python
-- named after [a settlement in Kiribati in the South Pacific, the approx. midpoint between San Francisco and Melbourne](https://en.wikipedia.org/wiki/Napari)
-- since then, the project has grown considerably, with >150 contributors and >400 plugins
-
-::: aside    
-For more backstory, [check out Juan's blog post](https://ilovesymposia.com/2019/10/24/introducing-napari-a-fast-n-dimensional-image-viewer-in-python/)—JAX is part of it!
-:::
-
 ## napari strengths
 
 - graphical UI to view & explore 2D, 3D, and higher-dimensional array-like data
@@ -141,7 +117,7 @@ For more backstory, [check out Juan's blog post](https://ilovesymposia.com/2019/
     - no parity between different layers/features (e.g. multiscale handling)
     - there can be bugs :beetle:
 - can run into GPU/memory limitations for some large-data workflows
-- Python packaging and dependencies
+- Python packaging and dependencies :grimacing:
 
 ## napari is an open-source, community developed project—anyone can contribute! 
 <br />
@@ -184,8 +160,6 @@ This does require an account (free), **but you can use that account to login at 
 reporting problems is very valuable!
 :::
 
-# Exploring the napari viewer GUI
-
 ## napari viewer
 
 - native application you can launch from the terminal/command prompt using `napari` command or via the application programming interface (API), e.g. `viewer = napari.Viewer()`
@@ -213,6 +187,12 @@ nbscreenshot(viewer, alt_text="Empty napari viewer")
 - Stored per Python env, reset using `napari --reset`
 :::
 
+## Plugins can be installed from within napari
+
+- plugins can be publically discoverable and have global reach via PyPI and [napari-hub.org](https://napari-hub.org)
+
+![](images/napari_plugin_UI.png){height="400" fig-alt="Screenshot of napari UI showing the plugin install/uninstall UI" fig-align="center"}
+
 ## napari layers
 
 - the napari visualization data model uses `layers`
@@ -231,37 +211,6 @@ viewer.add_image(data.kidney(), channel_axis = -1, name=['nuclei', 'WGA', 'actin
 
 nbscreenshot(viewer, alt_text="napari viewer with three layers: actin (red), WGA (green), nuclei (blue) displayed as a composite on the canvas in 2D.")
 ```
-
-## Dimensions in napari
-
-- by default, 2 dimensions are displayed: the last two (right-most) axes of an array
-- non-displayed dimensions will be represented using a slider
-- 3D display can be toggled using viewer button or API
-- axes can be rotated or transposed using viewer buttons or API
-
-## Dimensions in napari
-
-```{python}
-#| echo: false
-
-viewer.dims.ndisplay = 3
-
-nbscreenshot(viewer, alt_text="napari viewer with three layers: actin (red), WGA (green), nuclei (blue) displayed as a composite on the canvas in 3D.")
-```
-
-```{python}
-#| echo: false
-#| output: false
-viewer.close()
-```
-
-# The napari API
-
-##
-
-> # Headless napari is just Python!
-
-### -- Juan Nunez-Iglesias (**@jni**)
 
 ## Interact with napari using the built-in Python console
 
@@ -362,14 +311,3 @@ Plugin developer guide: [https://napari.org/dev/plugins/index.html](https://napa
 ::: {.notes}
 over 350, you can also choose to contribute to existing plugins
 :::
-
-## Plugins can be installed from within napari
-
-- plugins can be publically discoverable and have global reach via PyPI and [napari-hub.org](https://napari-hub.org)
-
-![](images/napari_plugin_UI.png){height="400" fig-alt="Screenshot of napari UI showing the plugin install/uninstall UI" fig-align="center"}
-
-
-
-
----
