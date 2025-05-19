@@ -1,6 +1,6 @@
-# Slideshow introduction to napari
+# about napari slidedeck
 
-These slides were prepared and use for an Introduction to napari workshop run at JAX (Spring 2024).
+These slides were prepared and use for Bioimaging Interest Group meeting at JAX (Spring 2025).
 
 ---
 The slide content is provided under a [CC-BY license](https://creativecommons.org/licenses/by/4.0/). 
