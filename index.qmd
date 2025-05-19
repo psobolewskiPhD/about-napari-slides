@@ -15,6 +15,13 @@ execute:
   cache: true
 ---
 
+## What can napari be used for?
+
+- view & explore 2D, 3D, and higher-dimensional arrays
+- overlay derived data such as points, polygons, labels, and more
+- seamlessly weave exploration, computation, and annotation together in imaging data analysis
+- leverage scientific Python ecosystem
+
 ## What is napari? a fast, interactive viewer for multi-dimensional images in Python
 
 ```{python}
@@ -62,12 +69,6 @@ nbscreenshot(viewer, alt_text="A rotated 3D view of labled blobs")
 viewer.close()
 ```
 
-## What can napari be used for?
-
-- view & explore 2D, 3D, and higher-dimensional arrays
-- overlay derived data such as points, polygons, labels, and more
-- seamlessly weave exploration, computation, and annotation together in imaging data analysis
-- leverage scientific Python ecosystem
 
 ## napari strengths
 
