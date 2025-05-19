@@ -129,15 +129,6 @@ viewer.close()
 
 - napari community meetings: [https://napari.org/stable/community/meeting_schedule.html](https://napari.org/stable/community/meeting_schedule.html)
 
-::: aside
-No accounts are needed to lurk...
-:::
-
-::: {.notes}
-domain specific knowledge is valuable too!
-feedback, Q&A, share use cases
-:::
-
 ## Report bugs
 
 - GitHub Issues: [https://github.com/napari/napari/issues](https://github.com/napari/napari/issues)
