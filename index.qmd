@@ -43,9 +43,7 @@ Research IT
 #### COI Disclaimer: Peter is a napari core developer
 :::
 
-## What is napari?
-
-A Python library for n-dimensional image visualization, annotation, and analysis.
+## What is napari? a fast, interactive viewer for multi-dimensional images in Python
 
 ```{python}
 #| echo: false
