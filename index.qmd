@@ -108,7 +108,7 @@ nbscreenshot(viewer, alt_text="Empty napari viewer")
 
 ```{python}
 #| echo: false
-import skimage.data
+from skimage import data
 from napari.utils import nbscreenshot
 
 viewer.add_image(data.kidney(), channel_axis = -1, name=['nuclei', 'WGA', 'actin'], colormap=['blue', 'green', 'red'])
