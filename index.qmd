@@ -68,6 +68,8 @@ nbscreenshot(viewer, alt_text="A rotated 3D view of labled blobs")
 viewer.close()
 ```
 
+---
+
 ## napari strengths
 
 - graphical UI to view & explore 2D, 3D, and higher-dimensional array-like data
