@@ -45,7 +45,7 @@ Research IT
 
 ## What is napari?
 
-#### A Python library for n-dimensional image visualization, annotation, and analysis.
+A Python library for n-dimensional image visualization, annotation, and analysis.
 
 ```{python}
 #| echo: false
@@ -91,8 +91,6 @@ nbscreenshot(viewer, alt_text="A rotated 3D view of labled blobs")
 #| output: false
 viewer.close()
 ```
-
----
 
 ## What can napari be used for?
 
