@@ -15,9 +15,9 @@ execute:
   cache: true
 ---
 
-## What is napari? 
+# What is napari? 
 
-### A fast, interactive viewer for multi-dimensional images in Python
+## A fast, interactive viewer for multi-dimensional images in Python
 
 ## napari strengths
 
