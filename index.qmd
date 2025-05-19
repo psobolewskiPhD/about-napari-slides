@@ -2,9 +2,7 @@
 format: 
     revealjs:
         theme: default
-        logo: "images/JAX_logo_rgb_transparentback.png"
         slide-number: true
-        footer: Imaging Applications, Research IT
         transition: "slide"
         highlight-style: arrow
         chalkboard: 
