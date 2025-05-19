@@ -16,59 +16,11 @@ execute:
 ---
 
 ---
-
-##
-
 ## napari
 
-## What is napari? A fast, interactive viewer for multi-dimensional images in Python
+## What is napari? 
 
-```{python}
-#| echo: false
-import napari
-import numpy as np
-from skimage import data, filters, measure, morphology
-from skimage.measure import regionprops
-
-cells3d = data.cells3d()
-
-nuclei = cells3d[:, 1, :, :]
-median = filters.median(nuclei)
-
-threshold = median > filters.threshold_li(median)
-
-remove_holes = morphology.remove_small_holes(threshold, 20**3)
-remove_objects = morphology.remove_small_objects(remove_holes, 20**3)
-
-labels = measure.label(remove_objects)
-
-properties = regionprops(labels, nuclei)
-centroids = [prop.centroid for prop in properties]
-
-viewer = napari.Viewer()
-
-viewer.add_image(nuclei, colormap="green")
-viewer.add_labels(labels)
-viewer.add_points(centroids, blending="translucent_no_depth", name="centroids")
-
-viewer.dims.ndisplay = 3
-viewer.camera.angles = (-30, 25, 120)
-
-if __name__ == '__main__':
-    napari.run()
-```
-```{python}
-#| echo: false
-from napari.utils import nbscreenshot
-nbscreenshot(viewer, alt_text="A rotated 3D view of labled blobs")
-```
-```{python}
-#| echo: false
-#| output: false
-viewer.close()
-```
-
----
+A fast, interactive viewer for multi-dimensional images in Python
 
 ## napari strengths
 
