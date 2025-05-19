@@ -15,33 +15,6 @@ execute:
   cache: true
 ---
 
-##
-
-## `napari`: what is it, what's new, and more!
-
-**Peter Sobolewski (he/him)**
-
-Systems Analyst
-Imaging Applications & Machine Learning
-Research IT
-
-:::: {.columns style='display: flex'}
-::: {.column width="50%" style='display: flex; justify-content: left; align-items: center;'}
-
-### [https://napari.org](https://napari.org) 
-
-:::
-::: {.column width="50%" style='display: flex; justify-content: center;'}
-
-![](images/napari.png){fig-alt="QuPath logo" width=250} 
-
-:::
-::::
-
-::: {.callout-important}
-#### COI Disclaimer: Peter is a napari core developer
-:::
-
 ## What is napari? a fast, interactive viewer for multi-dimensional images in Python
 
 ```{python}
